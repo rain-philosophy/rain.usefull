@@ -136,7 +136,7 @@ rm -r dir # удалить каталог dir
 rm -f file # удалить форсировано file
 rm -rf dir # удалить форсировано каталог dir
 
-cp -r ~/yujin_ocs/yocs_cmd_vel_mux/ ~/catkin_ws/src/turtlebot2/ # переместить папку yocs_cmd_vel_mux 
+cp -r ~/yujin_ocs/yocs_cmd_vel_mux/ ~/catkin_ws/src/turtlebot2/ # копировать папку yocs_cmd_vel_mux 
                                                                 # в папку turtlebot2 со всем содержимым
 
 ls # просмотр содержимого
