@@ -5,7 +5,7 @@
 
 ___
 #### Работа с git: :octocat:
-[как оформлять readme](https://github.com/GnuriaN/format-README#%D0%9E%D0%B3%D0%BB%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5)
+[как оформлять readme](https://github.com/GnuriaN/format-README#%D0%9E%D0%B3%D0%BB%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5)     
 [настройка ssh](https://youtu.be/fYFiQ7lpfiE?t=162)
 
 ##### Команды:
