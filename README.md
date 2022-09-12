@@ -5,8 +5,9 @@
 
 ___
 #### Работа с git: :octocat:
-[как оформлять readme](https://github.com/GnuriaN/format-README#%D0%9E%D0%B3%D0%BB%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5)     
-[настройка ssh](https://youtu.be/fYFiQ7lpfiE?t=162)
+[как оформлять readme - GitHub](https://github.com/GnuriaN/format-README#%D0%9E%D0%B3%D0%BB%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5)     
+[настройка ssh - YouTube](https://youtu.be/fYFiQ7lpfiE?t=162)     
+[Generating a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
 ##### Команды:
 ```python
