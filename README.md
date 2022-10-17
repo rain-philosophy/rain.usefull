@@ -3,6 +3,9 @@
 2. [Работа с :penguin:](#работа-с-terminal-penguin)
 3. [Работа с Sublime](#работа-с-sublime-text)
 
+Вопросы:
+Если await переключает программу на выполнение других тасков, то это разве не значит go to? я понимаю если await smthdef, но когда это  await asyncio.sleep...
+
 ___
 #### Работа с git: :octocat:
 [как оформлять readme - GitHub](https://github.com/GnuriaN/format-README#%D0%9E%D0%B3%D0%BB%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5)     
