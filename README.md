@@ -1,7 +1,9 @@
-## Что тут у нас?
+## :point_down: Что тут у нас? 
 1. [Работа с :octocat:](#работа-с-git-octocat)
 2. [Работа с :penguin:](#работа-с-terminal-penguin)
 3. [Работа с Sublime](#работа-с-sublime-text)
+4. [Работа с asyncio](#работа-с-asyncio)
+5. [(C)читай hacker](#считай-hacker)
 
 Вопросы:
 Если await переключает программу на выполнение других тасков, то это разве не значит go to? я понимаю если await smthdef, но когда это  await asyncio.sleep...
@@ -99,6 +101,7 @@ git pull # На своей машине
   git branch --delete branchname
 ```
 
+[:point_up: Оп и ап](#point_down-что-тут-у-нас)
 ___
 #### Работа с Terminal: :penguin:
 ```python
@@ -199,6 +202,7 @@ df -h # показывает сколько занято места на дис�
    -h            # заставляет ее показывать это в человеко-читаемом формате, а не в байтах (с) Маслов
    /dev/sda_smth # реальные диски
 ```
+[:point_up: Оп и ап](#point_down-что-тут-у-нас)
 ___
 #### Работа с Sublime text:
 ```python
@@ -209,3 +213,115 @@ subl [options] [files] # открыть файл в Sublime Text
                  -w # приостановить командную строку пока редактируется файл
                  -s # оставить окно при открытии ST в следующий раз
 ```
+
+[:point_up: Оп и ап](#point_down-что-тут-у-нас)
+___
+#### Работа с asyncio:
+##### Минутка истории
+```python
+# обычная функция перемножения двух чисел
+def multyply(a,b):
+    return a * b
+    
+multyply(2,2) # Output: 4
+```
+```python
+# пишем генератор с помощью ключевого слова yield
+def generator(a,b):
+    while True:
+        yield a * b
+        a = a + 1
+
+g = generator(2,2) # Output: 4 Output: 6 Output: 8
+```
+```python
+# раньше ассинхронность писали на генераторах, теперь так (тут что-то не так...)
+async def asyncfunction(a):
+    while True:
+        await a
+        a = a + 1
+    
+asyncio.run(asyncfunction())
+```
+
+##### Это база
+```python
+# async — ключевое слово, через которое мы объявляем асинхронную функцию, короутину
+async def some_function():
+    #function's logic
+    pass
+```
+```python
+# await — ключевое слово, через которое мы запускаем асинхронную функцию и передаем управление другим короутинам
+await some_function()
+```
+```python
+# loop (чисто старая школа)
+loop = asyncio.get_event_loop() # получаем loop, тк ранее он не существовал - создаем новый
+loop.run_until_complete(request_users_data(uid))
+
+# можно даже так делать:
+with open("out.csv", "w") as fh: # открываем фаил для записи
+    fieldnames = ["id", "name", "email"] # названия колонок в csv файле
+    writer = csv.DictWriter(fh, fieldnames=fieldnames) # объект для записи данных в csv формате
+    writer.writeheader() # записываем название колонок
+    for uid in ids:
+        writer.writerow(loop.run_until_complete(request_users_data(uid))) # запускаем короутину в loop и дожидаемся ее результата
+        
+loop = asyncio.get_event_loop() # получаем loop
+loop.create_task(worker()) # добавляем Task в event_loop
+loop.run_forever() # навсегда передаем управлени программы на обработку task-ов добавленных в event loop
+```
+```python
+# asyncio.run() - ньюфаги вошли в чат, поэтому в обоих случаях можно обойтись без явного использования loop в нашей программе
+
+```
+
+[:point_up: Оп и ап](#point_down-что-тут-у-нас)
+___
+#### (С)читай hacker:
+##### Faker - приблуда для генерации рандомных тестовых данных (реалистичных)
+```python
+pip install Faker # установка
+
+from faker import Faker # импорт
+
+fake = Faker() # создание объекта
+
+# методы:
+
+fake.name() 
+# Output: Laura Wilkins
+
+fake.simple_profile()
+''' Output: {'username': 'michael87', 
+             'name': 'Whitney Oconnor', 
+             'sex': 'F', 
+             'address': '063 Gonzalez Drives\nOchoahaven, VA 75565', 
+             'mail': 'caseybrendan@gmail.com', 
+             'birthdate': datetime.date(1943, 1, 8)} '''
+
+fake.address()
+fake.province()
+fake.city()
+
+fake.url()
+# Output: http://hogan.com/
+
+fake.company()
+# Output: Miles-Smith
+fake.company_suffix()
+# Output: and Sons
+fake.company_email()
+# Output: jennifer71@stevens.net
+
+fake.text()
+# Output: Us art couple protect act idea. Already yard argue suffer old story friend. Interest candidate whole point special drive order.
+fake.word()
+# Output: at
+fake.words()
+# Output: ['save', 'per', 'public']
+fake.sentences()
+# Output: ['Marriage feeling official.', 'Skin father suggest live here development.', 'Task suddenly majority.']
+```
+[:point_up: Оп и ап](#point_down-что-тут-у-нас)
