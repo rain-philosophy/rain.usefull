@@ -256,6 +256,15 @@ async def some_function():
 await some_function()
 ```
 ```python
+# awaitable - это все объекты, с которыми мы можем использовать ключевое слово await. Среди них:
+#   Coroutines
+#   Tasks
+#   Futures
+#     asyncio.Future — это более низкоуровневое представление asyncio.Task
+```
+
+##### Старая школа
+```python
 # loop (чисто старая школа)
 loop = asyncio.get_event_loop() # получаем loop, тк ранее он не существовал - создаем новый
 loop.run_until_complete(request_users_data(uid))
@@ -266,16 +275,109 @@ with open("out.csv", "w") as fh: # открываем фаил для запис
     writer = csv.DictWriter(fh, fieldnames=fieldnames) # объект для записи данных в csv формате
     writer.writeheader() # записываем название колонок
     for uid in ids:
-        writer.writerow(loop.run_until_complete(request_users_data(uid))) # запускаем короутину в loop и дожидаемся ее результата
+        # запускаем короутину в loop и дожидаемся ее результата
+        writer.writerow(loop.run_until_complete(request_users_data(uid))) 
         
 loop = asyncio.get_event_loop() # получаем loop
 loop.create_task(worker()) # добавляем Task в event_loop
 loop.run_forever() # навсегда передаем управлени программы на обработку task-ов добавленных в event loop
 ```
+##### Новая школа
 ```python
-# asyncio.run() - ньюфаги вошли в чат, поэтому в обоих случаях можно обойтись без явного использования loop в нашей программе
-
+# asyncio.run() - ньюфаг в мире асинхронности, поэтому можно обойтись без явного использования loop в нашей программе
+asyncio.run(main())
 ```
+##### create_task()
+```python
+# create_task(asyncfunction()) - инициализация тасков
+# можем инициализировать не через loop, а из другой корутины:
+import asyncio
+
+async def worker(idx: int):
+    while True:
+        print(f"worker-{idx} msg")
+        await asyncio.sleep(1)
+
+async def main():
+    for i in range(3): # добавляем в event loop 3 task-и
+        asyncio.create_task(worker(i + 1))
+
+    while True:
+        print(f"main msg")
+        await asyncio.sleep(1) # сон нужен для передачи управления другим короутинам, нашим worker-ам
+
+asyncio.run(main())
+```
+##### asyncio.gather() и asyncio.wait()
+```python
+# Если необходимо одновременно запустить несколько короутин и продолжить выполнение программы после завершения их работы
+async def main():
+    await asyncio.gather(
+        random_sleep(1),
+        random_sleep(2),
+        random_sleep(3),
+        random_sleep(4),
+        random_sleep(5),
+    )
+
+asyncio.run(main())
+
+# Либо через asyncio.wait()
+# return_when=ALL_COMPLETED ставится по умолчанию
+async def main():
+    await asyncio.wait([random_sleep(i) for i in range(1, 6)], return_when=ALL_COMPLETED)
+
+asyncio.run(main())
+
+# return_when=asyncio.FIRST_COMPLETED если необходимо прервать асинхронные запросы по первому ответившему
+```
+##### Timeout asyncio.wait() и asyncio.wait_for() 
+```python
+# если мы хотим выйти из корутины по таймауту
+import asyncio
+
+async def request_traffic_jams():
+    await asyncio.sleep(10)
+
+async def main():
+    try:
+        await asyncio.wait_for(request_traffic_jams(), timeout=1.0)
+    except asyncio.TimeoutError:
+        print("Problems with traffic_jams service")
+
+asyncio.run(main())
+```
+##### Адекватное завершение программы
+```python
+# вызываем исключение CancelledError внутри db_operation, 
+# оно будет обработано как только event loop передаст управление task-е, обрабатывающей эту короутину
+
+import asyncio
+from asyncio import CancelledError
+
+async def db_operation():
+    print("operation start")
+    try:
+        while True:
+            print("operation new round")
+            await asyncio.sleep(1)
+    except CancelledError:
+        print("operation was cancelled")
+        await asyncio.sleep(1)
+
+    print("operation done")
+
+async def main():
+    task = asyncio.create_task(db_operation())
+    await asyncio.sleep(5)
+
+    task.cancel() 
+
+    await task # передаем управление db_operation для корректного завершения
+
+asyncio.run(main())
+```
+
 
 [:point_up: Оп и ап](#point_down-что-тут-у-нас)
 ___
