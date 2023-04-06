@@ -105,6 +105,30 @@ git pull # На своей машине
 ___
 #### Работа с Terminal: :penguin:
 ```python
+ssh user_name@ip -p port_number # подключение по ssh
+
+sourcedefender encrypt file_name # кодирование
+
+scp -P port_number file_name user_name@ip:/home/dir_name/ # перекидывание файла по ssh с домашнего компа на сервер
+
+nohup python3 -m sourcedefender filename.pye > output.txt 2>&1 & # запуск процесса на сервере с записью вывода в файл 
+# 2>&1 означает, что терминал будет писать стандартные ошибки тоже в лог
+
+echo $! > save_pid.txt # сохраняет пид процесса, чтоб потом не искать
+
+ps -ef | grep command_name(python3) # найдет пид процесса
+
+kill 2566 # убить процесс
+kill -KILL 2566 # убить его полностью, если по хорошему не получилось
+
+tail my.log # вывести последние 10 строк лога (наверно про файл также)
+
+tail -f my.log # лог в прямом эфире
+
+sudo apt update
+sudo apt upgrade
+
+
 ctrl + alt + T # открыть терминал
 ctrl + shift + T # новую вкладку терминала
 
