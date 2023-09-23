@@ -452,4 +452,32 @@ fake.words()
 fake.sentences()
 # Output: ['Marriage feeling official.', 'Skin father suggest live here development.', 'Task suddenly majority.']
 ```
+
+##### apple keyboard
+```python
+# выключить клаву
+sudo bluetoothctl
+power on
+agent KeyboardOnly
+default-agent
+pairable on
+# включить клаву
+scan on # если остановился поиск
+# найти мак адрес клавы
+trust 00:C6:3F:96:CE:12
+pair 00:C6:3F:96:CE:12
+connect 00:C6:3F:96:CE:12
+
+# по дефолту печатает цифрами
+sudo apt install numlockx
+mumlockx off
+
+xmodmap -pke # посмотреть кейкоды
+xmodmap -e "keycode 169 = Delete" # назначить клавише эджект клавишу делит
+# сменить местами fn и ctrl https://www.reddit.com/r/AsahiLinux/comments/zmuz5l/is_there_a_way_to_remap_fn_to_ctrl/?rdt=63574:
+cd /sys/bus/hid/drivers/apple/module/parameters
+sudo nano swap_fn_leftctrl # изменить 0 на 1
+
+# здесь описываются еще файлы и за что отвечают в последней папке
+```
 [:point_up: Оп и ап](#point_down-что-тут-у-нас)
