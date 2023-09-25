@@ -468,6 +468,9 @@ trust 00:C6:3F:96:CE:12
 pair 00:C6:3F:96:CE:12
 connect 00:C6:3F:96:CE:12
 
+# если ошибка подключения, то
+sudo service bluetooth restart
+
 # по дефолту печатает цифрами
 sudo apt install numlockx
 mumlockx off
