@@ -469,6 +469,7 @@ pair 00:C6:3F:96:CE:12
 connect 00:C6:3F:96:CE:12
 
 # если ошибка подключения, то
+remove 00:C6:3F:96:CE:12
 sudo service bluetooth restart
 
 # по дефолту печатает цифрами
