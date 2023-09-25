@@ -457,10 +457,11 @@ fake.sentences()
 ```python
 # выключить клаву
 sudo bluetoothctl
+power off
 power on
-agent KeyboardOnly
-default-agent
-pairable on
+# agent KeyboardOnly
+# default-agent
+# pairable on
 # включить клаву
 scan on # если остановился поиск
 # найти мак адрес клавы
@@ -469,6 +470,7 @@ pair 00:C6:3F:96:CE:12
 connect 00:C6:3F:96:CE:12
 
 # если ошибка подключения, то
+sudo /etc/init.d/bluetooth restart
 remove 00:C6:3F:96:CE:12
 sudo service bluetooth restart
 
