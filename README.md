@@ -116,7 +116,7 @@ nohup python3 -m sourcedefender filename.pye > output.txt 2>&1 & # запуск 
 
 echo $! > save_pid.txt # сохраняет пид процесса, чтоб потом не искать
 
-ps -ef | grep command_name(python3) # найдет пид процесса
+ps -ef | grep python3 # command_name найдет пид процесса
 
 cat pid.txt # посмотреть содержимое текстового файла
 
