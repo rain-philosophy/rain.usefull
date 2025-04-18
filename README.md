@@ -1,4 +1,5 @@
-## :point_down: Что тут у нас? 
+## :point_down: Что тут у нас?
+0. [:unlock:](#работа-с-git-octocat)
 1. [Работа с :octocat:](#работа-с-git-octocat)
 2. [Работа с :penguin:](#работа-с-terminal-penguin)
 3. [Работа с Sublime](#работа-с-sublime-text)
@@ -9,6 +10,11 @@
 Если await переключает программу на выполнение других тасков, то это разве не значит go to? я понимаю если await smthdef, но когда это  await asyncio.sleep...
 
 ___
+#### :unlock:
+64.233.163.113 - ip google
+IP-адрес любого домена можно получить всегда с помощью терминальной утилиты ping или whois:
+
+
 #### Работа с git: :octocat:
 [как оформлять readme - GitHub](https://github.com/GnuriaN/format-README#%D0%9E%D0%B3%D0%BB%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5)     
 [настройка ssh - YouTube](https://youtu.be/fYFiQ7lpfiE?t=162)     
