@@ -14,6 +14,12 @@ ___
 64.233.163.113 - ip google
 IP-адрес любого домена можно получить всегда с помощью терминальной утилиты ping или whois:
 
+если wsl и vb не подружатся: https://stackoverflow.com/questions/58031941/how-to-get-virtualbox-6-0-and-wsl-working-at-the-same-time
+
+настольная лаба:
+pfSence скачать образ: https://repo.ialab.dsu.edu/pfsense/
+msfadmin
+
 
 #### Работа с git: :octocat:
 [как оформлять readme - GitHub](https://github.com/GnuriaN/format-README#%D0%9E%D0%B3%D0%BB%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5)     
